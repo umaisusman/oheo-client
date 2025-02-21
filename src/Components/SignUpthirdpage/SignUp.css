@@ -6,6 +6,7 @@
 }
 @media (max-width:500px) {
     .adjustwidth{
+        width:100vw;
         height: 1440px;
         margin-top: 50px;
         margin-left: 5px;
