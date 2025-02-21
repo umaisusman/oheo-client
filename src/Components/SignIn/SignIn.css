@@ -7,6 +7,12 @@
   @media (max-width: 500px) {
     .Rowclass1{
         height: 100vh;
-        padding : 30px
+       
+    }
+  }
+  @media (max-width: 500px) {
+    #logo{
+       margin-top: 30px;
+       
     }
   }
