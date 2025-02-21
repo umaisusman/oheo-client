@@ -7,6 +7,6 @@
   @media (max-width: 500px) {
     .Rowclass1{
         height: 100vh;
-         margin-top: 30px;
+        padding : 30px
     }
   }
