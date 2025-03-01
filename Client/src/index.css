@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+ 
+    --primary: 222.1 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+ 
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+ 
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+ 
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+ 
+    --ring: 222.1 83.2% 53.3%;
+ 
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+ 
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+ 
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+ 
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+ 
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+ 
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.9%;
+ 
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+ 
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+ 
+    --ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  input {
+    @apply outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-200;
+  }
+}
+
+.form-input {
+  @apply w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary/20 transition-all duration-200;
+}
+
+.form-label {
+  @apply text-sm font-medium text-gray-700 mb-1;
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom Bootstrap Overrides */
+.form-control:focus,
+.form-select:focus {
+  box-shadow: 0 0 0 0.25rem rgba(124, 58, 237, 0.25);
+  border-color: #8b5cf6;
+}
+
+.btn-primary {
+  background-color: #8b5cf6;
+  border-color: #8b5cf6;
+}
+
+.btn-primary:hover {
+  background-color: #7c3aed;
+  border-color: #7c3aed;
+}
+
+.badge.bg-primary {
+  background-color: #8b5cf6 !important;
+}
+
+.form-check-input:checked {
+  background-color: #8b5cf6;
+  border-color: #8b5cf6;
+}
+
+.card {
+  border-radius: 1rem;
+}
+
+.card.bg-light {
+  background-color: #f5f3ff !important;
+  border-color: #8b5cf6 !important;
+}

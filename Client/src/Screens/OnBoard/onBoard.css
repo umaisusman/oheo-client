@@ -1,0 +1,96 @@
+.custom-hover:hover {
+    background-color: #6f42c1 !important;
+    color: white !important;
+    border-color: #6f42c1 !important;
+  }
+
+
+  /* Sidebar Styling */
+/* Sidebar Styling */
+.sidebar {
+    transition: all 0.3s ease-in-out;
+}
+
+.sidebar {
+    width: 250px;
+    min-height: 100vh;
+    position: fixed;
+    left: -250px;
+    top: 0;
+    transition: all 0.3s ease-in-out;
+    z-index: 1050;
+}
+
+.sidebar-open {
+    left: 0;
+}
+
+.sidebar-closed {
+    left: -250px;
+}
+.sidebar-toggle {
+    position: absolute; /* Change from fixed */
+    top: 16px;
+    left: 16px;
+    z-index: 999; /* Ensure it's lower than the navbar */
+}
+
+
+
+@media (min-width: 992px) {
+    .sidebar {
+        position: relative;
+        left: 0;
+    }
+}
+
+.sidebar:hover {
+    box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar Links */
+.nav-link {
+    transition: background-color 0.3s ease-in-out, transform 0.2s;
+    padding: 10px;
+    border-radius: 6px;
+    color: black;
+}
+
+.nav-link:hover {
+    background-color: rgba(111, 66, 193, 0.1);
+    transform: translateX(5px);
+    color: #6f42c1;
+}
+
+/* Buttons */
+.custom-hover {
+    transition: all 0.3s ease-in-out;
+}
+
+.custom-hover:hover {
+    background-color: #6f42c1 !important;
+    color: white !important;
+    transform: scale(1.05);
+}
+
+/* Only Apply Hover Animation to Selectable Cards */
+.selectable-card {
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.selectable-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Back & Next Buttons */
+.btn {
+    transition: all 0.3s ease-in-out;
+}
+
+.btn:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+

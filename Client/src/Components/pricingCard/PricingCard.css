@@ -1,0 +1,58 @@
+.pricing-box {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    min-height: 800px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Apply hover effect only on the Standard Plan */
+.standard-box:hover {
+    background-color: #351F51;
+    color: white;
+}
+
+/* Ensure the muted text remains visible on hover */
+.standard-box:hover .text-muted {
+    color: #f8f9fa !important;
+}
+
+.standard-box:hover .text-light {
+    color: #f8f9fa !important;
+}
+
+/* Change button color when card is hovered */
+.standard-box:hover .btn-primary-custom {
+    background-color: white;
+    color: #351F51;
+}
+
+/* Prevent hover effects on Basic and Pro Plans */
+.no-hover:hover {
+    background-color: transparent !important;
+    color: inherit !important;
+}
+
+/* Custom button styling */
+.btn-primary-custom {
+    background-color: #9D6CD4;
+    color: white;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-primary-custom:hover {
+    background-color: #9D6CD4;
+}
+
+.highlighted-tag {
+    background-color: white;
+    color: #4A2560;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.price-small-text {
+    font-size: 0.9rem;
+}

@@ -1,0 +1,18 @@
+.card-hover:hover {
+    background-color: #351F51 !important;
+    color: white !important;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.card-hover:hover h2,
+.card-hover:hover p,
+.card-hover:hover h3 {
+    color: white !important;
+}
+
+.card-hover:hover .btn-primary {
+    background-color: white !important;
+    color: #6f42c1 !important;
+}
+
+

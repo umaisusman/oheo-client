@@ -1,0 +1,11 @@
+@media (max-width: 500px) {
+    .ali {
+      width: 1000px !important; /* Adjust the width as needed */
+      height: 200px
+    }
+  }
+  @media (max-width: 500px) {
+    .Rowclass1{
+        height: 95vh;
+    }
+  }
