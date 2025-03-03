@@ -74,7 +74,7 @@ const OnBoard = () => {
                         }}>
                         <h6 className="fw-bold">Your Trial is Started</h6>
                         <p className="small m-0">Your trial ends on March 22.<br />Select a plan to extend your trial.</p>
-                        <button className="btn btn-dark btn-sm mt-2 w-100">Select a Plan</button>
+                        <button className="btn btn-dark btn-sm mt-2 w-100" onClick={handleNext}>Select a Plan</button>
                     </div>
                     <ul className="list-unstyled text-center mt-4">
             <li className="d-flex align-items-center justify-content-center text-dark p-2 rounded ">

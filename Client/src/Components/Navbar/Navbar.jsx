@@ -4,10 +4,13 @@ import { useState, useRef, useEffect } from "react"
 import { Search, Sun, Bell, ChevronDown, Menu, X } from "lucide-react"
 import "bootstrap/dist/css/bootstrap.min.css"
 import logo from "../../images/logo.png"
-import './Navbar.css'
+import "./Navbar.css"
+import { useNavigate } from "react-router-dom"
+
 export default function Navbar() {
   const [showNotifications, setShowNotifications] = useState(false)
   const notificationsRef = useRef(null)
+  const navigate = useNavigate() 
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -24,6 +27,10 @@ export default function Navbar() {
 
   const toggleNotifications = () => {
     setShowNotifications(!showNotifications)
+  }
+
+  const handleLogout = () => { 
+    navigate("/login") 
   }
 
   return (
@@ -45,7 +52,7 @@ export default function Navbar() {
           Floor Shop <ChevronDown size={16} />
         </button>
 
-        {/* Navigation Items - Always Visible */}
+        {/* Navigation Items */}
         <div className="d-flex align-items-center gap-3">
           {/* Search Bar */}
           <div className="position-relative">
@@ -58,12 +65,12 @@ export default function Navbar() {
             />
           </div>
 
-          {/* Icons */}
+          {/* Theme Toggle */}
           <button className="btn btn-link p-2" aria-label="Toggle theme">
             <Sun size={20} />
           </button>
 
-          {/* Notifications Button with Dropdown */}
+          {/* Notifications */}
           <div className="position-relative" ref={notificationsRef}>
             <button className="btn btn-link p-2" aria-label="Notifications" onClick={toggleNotifications}>
               <Bell size={20} />
@@ -123,18 +130,23 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Profile Icon */}
-          <img
-            src="https://github.com/shadcn.png"
-            alt="User"
-            className="rounded-circle"
-            width={32}
-            height={32}
-            aria-label="User profile"
-          />
+          {/* Profile & Logout Section */}
+          <div className="d-flex align-items-center gap-2">
+            <img
+              src="https://github.com/shadcn.png"
+              alt="User"
+              className="rounded-circle"
+              width={32}
+              height={32}
+              aria-label="User profile"
+            />
+            {/* Logout Button */}
+            <button className="btn btn-outline-danger btn-sm" onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
         </div>
       </div>
     </header>
   )
 }
-

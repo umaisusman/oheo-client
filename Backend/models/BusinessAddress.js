@@ -43,7 +43,7 @@ const mongoose = require("mongoose");
 
 const BusinessSchema = new mongoose.Schema(
   {
-    email: { type: String, required: true }, 
+    userId: { type: String, required: true }, 
     business: { type: String, required: true },
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },

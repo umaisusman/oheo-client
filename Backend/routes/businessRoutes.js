@@ -61,50 +61,16 @@ const router = express.Router();
 const Business = require("../models/BusinessAddress");
 const User = require("../models/User");
 
-// Create a Business Address
-// router.post("/add-business", async (req, res) => {
-//   try {
-//     const { userId, business, firstName, lastName, country, city, state, zipCode, phone, address } = req.body;
-
-//     // Check if user exists
-//     const user = await User.findById(userId);
-//     if (!user) {
-//       return res.status(404).json({ message: "User not found" });
-//     }
-
-//     // Create a new business entry
-//     const newBusiness = new Business({
-//       userId,
-//       business,
-//       firstName,
-//       lastName,
-//       country,
-//       city,
-//       state,
-//       zipCode,
-//       phone,
-//       address,
-//     });
-
-//     await newBusiness.save();
-//     console.log(userId)
-//     res.status(201).json({ message: "Business address added successfully", data: newBusiness });
-//   } catch (error) {
-//     res.status(500).json({ message: "Server error", error: error.message });
-//   }
-// });
-
 router.post("/add-business", async (req, res) => {
   try {
-    const { email, business, firstName, lastName, country, city, state, zipCode, phone, address } = req.body;
+    const { userId, business, firstName, lastName, country, city, state, zipCode, phone, address } = req.body;
 
-    const user = await User.findOne({ email });
+    const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-
     const newBusiness = new Business({
-      email: email, 
+      userId,
       business,
       firstName,
       lastName,
@@ -117,13 +83,14 @@ router.post("/add-business", async (req, res) => {
     });
 
     await newBusiness.save();
-    console.log(user._id);
-    console.log(newBusiness);
+    console.log(userId)
     res.status(201).json({ message: "Business address added successfully", data: newBusiness });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 });
+
+
 
 
 router.get("/user-businesses/:userId", async (req, res) => {

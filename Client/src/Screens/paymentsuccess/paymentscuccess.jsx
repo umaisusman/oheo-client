@@ -243,9 +243,9 @@ const paymentscuccess = () => {
                       color: "#fff",
                     }}
                     onClick={async () => {
-                      const email = localStorage.getItem("userEmail")
-                      if (!email) {
-                        alert("User email not found. Please log in again.");
+                      const userId = localStorage.getItem("userProfile")
+                      if (!userId) {
+                        alert("User userId not found. Please log in again.");
                         return;
                       }                      
 
@@ -254,8 +254,9 @@ const paymentscuccess = () => {
                           method: "POST",
                           headers: {
                             "Content-Type": "application/json",
+                             Authorization: `Bearer ${localStorage.getItem("OhdevToken")}`,
                           },
-                          body: JSON.stringify({ email, ...formData }),                        });
+                          body: JSON.stringify({ userId, ...formData }),                        });
 
                         const data = await response.json();
                         if (response.ok) {

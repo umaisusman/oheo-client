@@ -81,36 +81,50 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
+import {login } from '../../ReduxToolkit/authSlice'
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
 const Logincode = () => {
-  const [email, setEmail] = useState("");  // Added email state
+  const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  
+  const dispatch = useDispatch();
+
   const handleCodeVerification = async (e) => {
     e.preventDefault();
     setError("");
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/verify-login-code",
-        { email, code },
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      const response = await axios.post("http://localhost:5000/verify-login-code", { email, code }, {
+        headers: { "Content-Type": "application/json" },
+      });
 
       if (response.status === 200) {
-        localStorage.setItem("OhdevToken", response.data.token);
-        
-        
-        navigate("/dashboard");
+        const token = response.data.token;
+        localStorage.setItem("OhdevToken", token);
+        dispatch(login()); 
+        fetchUserProfile(token);
       }
     } catch (err) {
       setError(err.response?.data?.message || "Invalid code. Please try again.");
+    }
+  };
+
+  const fetchUserProfile = async (token) => {
+    try {
+      const profileResponse = await axios.get("http://localhost:5000/profile", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (profileResponse.status === 200) {
+        localStorage.setItem("userProfile", profileResponse.data.userId); 
+        navigate("/OnBoard");
+      }
+    } catch (err) {
+      setError("Failed to load profile. Please try again.");
     }
   };
 
@@ -149,7 +163,7 @@ const Logincode = () => {
             </Button>
           </Form>
           {error && <p className="text-danger mt-3">{error}</p>}
-          
+
           <p className="mt-3">
             Didn't receive the code? <a href="#">Resend</a>
           </p>
