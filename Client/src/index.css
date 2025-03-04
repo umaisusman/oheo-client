@@ -139,3 +139,32 @@
   background-color: #f5f3ff !important;
   border-color: #8b5cf6 !important;
 }
+
+:root {
+  --bs-primary: #6610f2;
+  --bs-primary-rgb: 102, 16, 242;
+}
+
+.bg-primary {
+  background-color: var(--bs-primary) !important;
+}
+
+.text-primary {
+  color: var(--bs-primary) !important;
+}
+
+.btn-primary {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+
+.btn-outline-primary {
+  color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+

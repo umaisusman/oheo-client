@@ -15,12 +15,14 @@ import CardDetails from "./Screens/CardDetails/CardDetails";
 import PaymentSuccess from "./Screens/paymentsuccess/paymentscuccess";
 import HomeDashoard from "./Screens/Home/Home";
 import ProtectedRoute from "./ProtectedRoute";
+import Homepage from "./Screens/LandinPageScreens/HomePage/Homepage";
 
 export default function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<SignupPage />} />
+        <Route path="/Ohdev" element={<Homepage />} />
         <Route path="/Signup" element={<SignupSecondPage />} />
         <Route path="/Login" element={<Signup />} />
         <Route path="/Logincode" element={<Signupcode />} />
