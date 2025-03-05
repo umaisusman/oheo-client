@@ -1,16 +1,58 @@
 
 
-import React from 'react';
+import React, { useState }  from 'react';
 import CardNavbar from '../../Components/cardNavbar/CardNavbar';
 import method from '../../images/Method.png'
 import visa from '../../images/Visa.png'
+import { getNames } from 'country-list';
 import { useNavigate } from 'react-router-dom';
 
 export default function CardDetails() {
   const navigate = useNavigate()
-  const handleNext = () => {
-    navigate('/paymentSuccess')
-}
+  const countries = getNames().sort(); 
+ 
+  
+
+const [formData, setFormData] = useState({
+  firstName: '',
+  lastName: '',
+  cardNumber: '',
+  expDate: '',
+  cvv: '',
+  country: '',
+  zipCode: ''
+});
+
+const handleChange = (e) => {
+  const { name, value } = e.target;
+  setFormData({ ...formData, [name]: value });
+};
+const handleNext = async () => {
+  try {
+    const response = await fetch("http://localhost:5000/api/business/create-payment-intent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...formData,
+        amount: 299, 
+        currency: "USD",
+      }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert("Payment Intent Created Successfully");
+      navigate("/paymentSuccess");
+    } else {
+      alert(`Error: ${data.error}`);
+    }
+  } catch (error) {
+    alert(`Error: ${error.message}`);
+  }
+};
   return (
     <div>
         <CardNavbar/>
@@ -42,39 +84,93 @@ export default function CardDetails() {
                 </div>
 
                 <form>
-                  <div className="row g-3">
-                    <div className="col-md-6">
-                      <label className="form-label">First name</label>
-                      <input type="text" className="form-control" placeholder="Input first name" />
-                    </div>
-                    <div className="col-md-6">
-                      <label className="form-label">Last name</label>
-                      <input type="text" className="form-control" placeholder="Input last name" />
-                    </div>
-                    <div className="col-12">
-                      <label className="form-label">Card number</label>
-                      <input type="text" className="form-control" placeholder="xxxx xxxx xxxx xxxx" />
-                    </div>
-                    <div className="col-md-6">
-                      <label className="form-label">Expires</label>
-                      <input type="text" className="form-control" placeholder="mm/yyyy" />
-                    </div>
-                    <div className="col-md-6">
-                      <label className="form-label">CVV</label>
-                      <input type="text" className="form-control" placeholder="xxx" />
-                    </div>
-                    <div className="col-md-6">
-                      <label className="form-label">Country/region</label>
-                      <select className="form-select">
-                        <option>Indonesia</option>
-                      </select>
-                    </div>
-                    <div className="col-md-6">
-                      <label className="form-label">ZIP Code</label>
-                      <input type="text" className="form-control" placeholder="Input ZIP code" />
-                    </div>
-                  </div>
-                </form>
+  <div className="row g-3">
+    <div className="col-md-6">
+      <label className="form-label">First name</label>
+      <input 
+        type="text" 
+        className="form-control" 
+        placeholder="First Name" 
+        name="firstName" 
+        value={formData.firstName} 
+        onChange={handleChange} 
+      />
+    </div>
+    <div className="col-md-6">
+      <label className="form-label">Last name</label>
+      <input 
+        type="text" 
+        className="form-control" 
+        placeholder="Input last name" 
+        name="lastName"
+        value={formData.lastName} 
+        onChange={handleChange} 
+      />
+    </div>
+    <div className="col-12">
+      <label className="form-label">Card number</label>
+      <input 
+        type="text" 
+        className="form-control" 
+        placeholder="xxxx xxxx xxxx xxxx"  
+        name="cardNumber"
+        value={formData.cardNumber} 
+        onChange={handleChange} 
+      />
+    </div>
+    <div className="col-md-6">
+      <label className="form-label">Expires</label>
+      <input 
+        type="text" 
+        className="form-control" 
+        placeholder="mm/yyyy"  
+        name="expDate"
+        value={formData.expDate} 
+        onChange={handleChange}
+      />
+    </div>
+    <div className="col-md-6">
+      <label className="form-label">CVV</label>
+      <input 
+        type="text" 
+        className="form-control" 
+        placeholder="xxx" 
+        name="cvv"
+        value={formData.cvv} 
+        onChange={handleChange} 
+      />
+    </div>
+    <div className="col-md-6">
+      <label className="form-label">Country/Region</label>
+      <select 
+        name="country" 
+        className="form-select" 
+        value={formData.country} 
+        onChange={handleChange}
+        required
+      >
+        <option value="">Select Country</option>
+        {countries.map((country) => (
+          <option key={country} value={country}>
+            {country}
+          </option>
+        ))}
+      </select>
+    </div>
+    <div className="col-md-6">
+      <label className="form-label">ZIP Code</label>
+      <input 
+        type="text" 
+        className="form-control" 
+        placeholder="Input ZIP code"  
+        name="zipCode"
+        value={formData.zipCode} 
+        onChange={handleChange} 
+      />
+    </div>
+  </div>
+</form>
+
 
                 <div className="card mt-3 border">
                   <div className="card-body d-flex align-items-center">
@@ -159,3 +255,7 @@ export default function CardDetails() {
     
   );
 }
+
+
+//pk_test_51QzForH5CzKy8o4diRBINgOHb6bGSoUExhtHdJzqeBoZzZn9zd7et5GVCvULr3xrJIxe9tWcQ8IoMSuVI1ufxLBv00kkU05hTT
+//sk_test_51QzForH5CzKy8o4dolvzWiofXvlIPe303NL4QACq5VYgjs0o4wIUAW3dtAdJNwtzMDBXmt2ZY9AnElLoWTGUSNrO00qZ5DtVti

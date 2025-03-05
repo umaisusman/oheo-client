@@ -1,0 +1,47 @@
+/* Add this CSS file to your project for additional responsive styles */
+
+/* Responsive font sizes */
+@media (max-width: 576px) {
+    h1 {
+      font-size: 2rem !important;
+    }
+    h2 {
+      font-size: 1.5rem !important;
+    }
+    .fs-3 {
+      font-size: 1.25rem !important;
+    }
+  }
+  
+  /* Custom utility classes */
+  .fs-md-1 {
+    font-size: 2.5rem;
+  }
+  
+  @media (min-width: 768px) {
+    .fs-md-1 {
+      font-size: 3.5rem;
+    }
+  }
+  
+  /* Card height adjustments */
+  @media (max-width: 992px) {
+    .card {
+      height: auto !important;
+    }
+  }
+  
+  /* Spacing adjustments */
+  @media (max-width: 768px) {
+    .container {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  
+    .py-5 {
+      padding-top: 2rem !important;
+      padding-bottom: 2rem !important;
+    }
+  }
+  
+  
