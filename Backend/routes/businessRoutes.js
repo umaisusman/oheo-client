@@ -60,6 +60,7 @@ const express = require("express");
 const router = express.Router();
 const Business = require("../models/BusinessAddress");
 const User = require("../models/User");
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 router.post("/add-business", async (req, res) => {
   try {
@@ -109,6 +110,34 @@ router.get("/user-businesses/:userId", async (req, res) => {
       res.status(500).json({ message: "Server error", error: error.message });
     }
   });
+  router.post("/create-payment-intent", async (req, res) => {
+    try {
+        const { firstName, lastName, cardNumber, expDate, cvv, country, zipCode, amount, currency } = req.body;
+
+        if (!firstName || !lastName || !cardNumber || !expDate || !cvv || !amount || !currency) {
+            return res.status(400).json({ error: "Missing required payment details" });
+        }
+        const paymentIntent = await stripe.paymentIntents.create({
+            amount: amount * 100, 
+            currency,
+            payment_method_types: ["card"],
+            metadata: {
+                firstName,
+                lastName,
+                country,
+                zipCode,
+            },
+        });
+
+        res.status(200).json({
+            clientSecret: paymentIntent.client_secret,
+            message: "Payment Intent Created Successfully",
+        });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
   
 
 module.exports = router;
